@@ -1,0 +1,33 @@
+.leftbar {
+    background-color: #efefef !important;
+    height: auto;
+    font-family: "Roboto";
+}
+
+.leftbar .menu-item {
+    margin: 2rem;
+}
+
+.leftbar .menu-item .item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.leftbar .menu-item a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    text-overflow: ellipsis;
+}
+
+.leftbar .menu-item .item svg {
+    color: #111;
+    font-size: 18px;
+}
+
+.leftbar .menu-item a.active .item span, .leftbar .menu-item a.active .item svg {
+    color: #1976d2 !important;
+}

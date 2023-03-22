@@ -1,0 +1,43 @@
+.categories {
+    display: flex !important;
+    margin-top: 70px !important;
+    font-family: "Roboto";
+}
+
+.categories .main {
+    margin-top: 20px !important;
+    padding-right: 2rem !important;
+}
+
+.categories .main .alert {
+    width: 100% !important;
+    height: 100px !important;
+    background-color: #fff !important;
+    border: 1px solid #fff !important;
+    display: flex;
+    align-items: center !important;
+}
+
+.categories .main .alert .input-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
+}
+
+.categories .main .alert .input-group input {
+    box-shadow: none !important;
+}
+
+.categories .main .col-sm-4 .btn-primary {
+    display: flex !important;
+    align-items: center !important;
+    gap: .5rem !important;
+    float: right !important;
+    background-color: #1976d2 !important;
+}
+
+.categories .tableCategorie {
+    background-color: #fff !important;
+    padding: 1rem;
+}
