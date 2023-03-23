@@ -1,14 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import { ContextApp } from '../../context/AppContext'
 import "./Categorie.css"
 import ListCategorie from './ListCategorie';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllcategories } from '../../features/Categories';
 
 const Categorie = () => {
-    const { userConnected } = useContext(ContextApp);
-    console.log(userConnected)
+
+    // const { userConnected } = useContext(ContextApp);
+
+    const categoriesList = useSelector((state) => state);
+
+    console.log(categoriesList)
+
     return (
         <>
             <Navbar />
@@ -22,21 +30,23 @@ const Categorie = () => {
                     </div>
                     <div className='alert alert-success'>
                         <div className='col-sm-8'>
-                            <div class="input-group">
-                                <input type="search" id="form1" class="form-control" />
+                            <div className="input-group">
+                                <input type="search" id="form1" className="form-control" />
                                 <FaSearch color='#1976d2' />
                             </div>
                         </div>
                         <div className='col-sm-4'>
                             <button className='btn btn-primary'>
-                                <FaPlus/>
-                                Ajouter
+                                <FaPlus />
+                                <Link to='add'>
+                                    Ajouter
+                                </Link>
                             </button>
                         </div>
                     </div>
 
                     <div className='col-sm-12 tableCategorie'>
-                        <ListCategorie/>
+                        <ListCategorie data={categoriesList} />
                     </div>
                 </div>
             </div>

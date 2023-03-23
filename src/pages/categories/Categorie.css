@@ -2,11 +2,17 @@
     display: flex !important;
     margin-top: 70px !important;
     font-family: "Roboto";
+    font-size: 14px !important;
 }
 
 .categories .main {
     margin-top: 20px !important;
     padding-right: 2rem !important;
+}
+
+.categories .form-control,
+.categories textarea {
+    box-shadow: none !important;
 }
 
 .categories .main .alert {
@@ -40,4 +46,46 @@
 .categories .tableCategorie {
     background-color: #fff !important;
     padding: 1rem;
+}
+
+.categories a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.categories a:hover {
+    color: #fff;
+}
+
+.categories .retour {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: #1976d2;
+    font-size: 15px;
+}
+
+.categories .imageCard {
+    height: 400px;
+}
+
+.categories .imageCard .card {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.categories .imageCard .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.categories .noneImage {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    height: 200px;
+    border: 1px solid #1976d2;
+    gap: 1rem;
 }
