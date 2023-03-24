@@ -26,7 +26,7 @@ export default function ListCategorie(props) {
       dangerMode: true
     }).then((willDelete) => {
       if (willDelete) {
-        // dispatch(deleteCategory(id));
+        dispatch(deleteCategory(id));
       }
     }).catch((error) => {
       console.log(error);

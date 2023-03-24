@@ -82,7 +82,9 @@ export const categoriesSlice = createSlice({
         },
         [deleteCategory.fulfilled]: (state, action) => {
             state.loading = false;
-            state.value.filter(val => val.id !== action.payload)
+            state.value = state.value.filter(val => {
+                return val.id !== action.payload
+            })
             state.isSuccess = true;
         },
         [deleteCategory.rejected]: (state, action) => {
