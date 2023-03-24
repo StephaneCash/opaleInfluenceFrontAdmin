@@ -23,9 +23,6 @@ const Categorie = () => {
                     <Leftbar />
                 </div>
                 <div className='col-sm-10 main'>
-                    <div className='col-sm-12'>
-                        <h3>Catégories</h3>
-                    </div>
                     <div className='alert alert-success'>
                         <div className='col-sm-8'>
                             <div className="input-group">
@@ -34,12 +31,12 @@ const Categorie = () => {
                             </div>
                         </div>
                         <div className='col-sm-4'>
-                            <button className='btn btn-primary'>
-                                <FaPlus />
-                                <Link to='add'>
+                            <Link to='add'>
+                                <button className='btn btn-primary'>
+                                    <FaPlus />
                                     Ajouter
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
                         </div>
                     </div>
 

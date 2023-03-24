@@ -5,7 +5,8 @@ import Navbar from '../../components/navbar/Navbar';
 import "./Categorie.css";
 import { Link } from 'react-router-dom';
 import { newCategorie } from "../../features/Categories";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../components/loader/Loader';
 
 const AddCategorie = () => {
 
@@ -14,15 +15,19 @@ const AddCategorie = () => {
     const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
 
+    const [btnClic, setBtnClic] = useState(false);
+
     const dispatch = useDispatch();
+
+    const isLoading = useSelector(state => state.categories);
 
     const handleImage = (e) => {
         setImage(e.target.files[0]);
         setFile(URL.createObjectURL(e.target.files[0]))
-    }
+    };
 
     const addCategorie = (e) => {
-       
+        setBtnClic(true);
         let formData = new FormData();
         formData.append('nom', nom);
         formData.append('image', image);
@@ -105,8 +110,15 @@ const AddCategorie = () => {
                                 </div>
                             </div>
                         </div>
-                        <button className='btn btn-primary' onClick={addCategorie}>
-                            Ajouter
+                        <button
+                            className='btn btn-primary'
+                            onClick={addCategorie}
+                            disabled={nom && description ? false : true}
+                        >
+                            {
+                                isLoading && isLoading.loading ? <Loader /> : "Ajouter"
+                            }
+
                         </button>
                     </div>
                 </div>

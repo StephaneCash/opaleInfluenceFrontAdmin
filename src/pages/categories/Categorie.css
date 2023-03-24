@@ -86,6 +86,24 @@
     align-items: center !important;
     text-align: center !important;
     height: 200px;
-    border: 1px solid #1976d2;
+    border: 3px dotted #1976d2;
     gap: 1rem;
+}
+
+.categories .btnList {
+    border: 1px solid silver;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+.categories td {
+    padding-top: 10px;
+    font-family: "Roboto";
+    padding-bottom: 10px;
+    font-size: 14px !important;
+}
+
+.swal-button--danger {
+    background-color: #1976d2 !important
 }

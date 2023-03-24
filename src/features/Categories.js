@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { baseUrl } from "../bases/basesUrl";
+import { useNavigate } from "react-router-dom";
 
 export const getAllcategories = createAsyncThunk("categories/getData", async (arg, {
     rejectWithValue
@@ -13,17 +15,31 @@ export const getAllcategories = createAsyncThunk("categories/getData", async (ar
     }
 });
 
-export const newCategorie = createAsyncThunk("categories/create", async (data, {
-    rejectWithValue
-}) => {
-    try {
-        const resp = await axios.post(`${baseUrl}/categories`, data);
-        console.log(resp.data , " create")
-        return resp.data;
-    } catch (error) {
-        rejectWithValue(error.response);
-    }
-})
+export const newCategorie = createAsyncThunk("categories/create",
+    async (data) => {
+        try {
+            //  let navigate = useNavigate();
+            const resp = await axios.post(`${baseUrl}/categories`, data);
+            toast.success('Catégorie ajouter avec succès');
+            //navigate("/categories");
+            return resp.data;
+        } catch (error) {
+            console.log(error.response);
+        }
+    });
+
+export const deleteCategory = createAsyncThunk("categories/delete",
+    async (id) => {
+        try {
+            //  let navigate = useNavigate();
+            await axios.delete(`${baseUrl}/categories/${id}`);
+            toast.success('Catégorie supprimée avec succès');
+            //navigate("/categories");
+            return id;
+        } catch (error) {
+            console.log(error.response)
+        }
+    })
 
 export const categoriesSlice = createSlice({
     name: "categories",
@@ -33,8 +49,10 @@ export const categoriesSlice = createSlice({
         loading: false
     },
     extraReducers: {
+        //GET ALL CATEGORIES
         [getAllcategories.pending]: (state, { payload }) => {
             state.loading = true;
+            state.isSuccess = false;
         },
         [getAllcategories.fulfilled]: (state, { payload }) => {
             state.loading = false;
@@ -45,6 +63,7 @@ export const categoriesSlice = createSlice({
             state.loading = false;
             state.isSuccess = false;
         },
+        //CREATE CATEGORIE
         [newCategorie.pending]: (state, action) => {
             state.loading = true;
         },
@@ -54,6 +73,19 @@ export const categoriesSlice = createSlice({
             state.isSuccess = true;
         },
         [newCategorie.rejected]: (state, action) => {
+            state.loading = false;
+            state.isSuccess = false;
+        },
+        // DELETE CATGORIE
+        [deleteCategory.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [deleteCategory.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.value.filter(val => val.id !== action.payload)
+            state.isSuccess = true;
+        },
+        [deleteCategory.rejected]: (state, action) => {
             state.loading = false;
             state.isSuccess = false;
         }
