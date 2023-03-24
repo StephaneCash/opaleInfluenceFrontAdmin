@@ -11,11 +11,11 @@ import { baseUrlImage } from '../../bases/basesUrl';
 import LoaderBlue from '../../components/loader/LoaderBlue';
 import { useDispatch } from 'react-redux';
 import { deleteCategory } from '../../features/Categories';
-import { toast } from "react-toastify"
 import swal from 'sweetalert';
 
 export default function ListCategorie(props) {
   let data = props.data;
+  let valueSearch = props.valueSearch && props.valueSearch.toLowerCase();
 
   let dispatch = useDispatch();
 
@@ -46,25 +46,29 @@ export default function ListCategorie(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data && data.value && data.value.length > 0 ? data.value.map((row) => (
-            <TableRow
-              key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell width={200}>{row.nom}</TableCell>
-              <TableCell align="left" width={500}>{
-                row.description.split(".")[0] + "..."
-              }</TableCell>
-              <TableCell align="left">
-                <Avatar alt="Remy Sharp" src={baseUrlImage + "/" + row.url} />
-              </TableCell>
-              <TableCell align="left" width={240}>
-                <button className='btnList'>Détail</button>
-                <button className='btnList'>Modifier</button>
-                <button className='btnList' onClick={() => deleteCategorie(row.id)}>Supprimer</button>
-              </TableCell>
-            </TableRow>
-          )) :
+          {data && data.value && data.value.length > 0 ? data.value.filter(val => {
+            const nom = val.nom.toLowerCase();
+            return nom.includes(valueSearch)
+          })
+            .map((row) => (
+              <TableRow
+                key={row.id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell width={200}>{row.nom}</TableCell>
+                <TableCell align="left" width={500}>{
+                  row.description.split(".")[0] + "..."
+                }</TableCell>
+                <TableCell align="left">
+                  <Avatar alt="Remy Sharp" src={baseUrlImage + "/" + row.url} />
+                </TableCell>
+                <TableCell align="left" width={240}>
+                  <button className='btnList'>Détail</button>
+                  <button className='btnList'>Modifier</button>
+                  <button className='btnList' onClick={() => deleteCategorie(row.id)}>Supprimer</button>
+                </TableCell>
+              </TableRow>
+            )) :
             data && data.value && data.value.length === 0 ?
               <TableCell colSpan="4px"
                 style={{

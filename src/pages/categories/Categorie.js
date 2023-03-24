@@ -7,13 +7,14 @@ import { ContextApp } from '../../context/AppContext'
 import "./Categorie.css"
 import ListCategorie from './ListCategorie';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllcategories } from '../../features/Categories';
 
 const Categorie = () => {
 
     // const { userConnected } = useContext(ContextApp);
 
     const categoriesList = useSelector((state) => state.categories);
+
+    const [valueSearch, setValueSearch] = useState('');
 
     return (
         <>
@@ -26,7 +27,13 @@ const Categorie = () => {
                     <div className='alert alert-success'>
                         <div className='col-sm-8'>
                             <div className="input-group">
-                                <input type="search" id="form1" className="form-control" />
+                                <input
+                                    type="search"
+                                    id="form1"
+                                    placeholder='Rechercher...'
+                                    className="form-control"
+                                    onChange={(e) => setValueSearch(e.target.value)}
+                                />
                                 <FaSearch color='#1976d2' />
                             </div>
                         </div>
@@ -41,7 +48,10 @@ const Categorie = () => {
                     </div>
 
                     <div className='col-sm-12 tableCategorie'>
-                        <ListCategorie data={categoriesList} />
+                        <ListCategorie
+                            data={categoriesList}
+                            valueSearch={valueSearch}
+                        />
                     </div>
                 </div>
             </div>

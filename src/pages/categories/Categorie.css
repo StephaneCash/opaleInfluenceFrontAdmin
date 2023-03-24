@@ -99,9 +99,13 @@
 
 .categories td {
     padding-top: 10px;
-    font-family: "Roboto";
+    font-family: "Roboto" !important;
     padding-bottom: 10px;
     font-size: 14px !important;
+}
+
+.categories th {
+    font-weight: 700;
 }
 
 .swal-button--danger {
