@@ -12,6 +12,7 @@ import LoaderBlue from '../../components/loader/LoaderBlue';
 import { useDispatch } from 'react-redux';
 import { deleteCategory } from '../../features/Categories';
 import swal from 'sweetalert';
+import { Link } from 'react-router-dom';
 
 export default function ListCategorie(props) {
   let data = props.data;
@@ -31,6 +32,10 @@ export default function ListCategorie(props) {
     }).catch((error) => {
       console.log(error);
     });
+
+  };
+
+  const updateCategorie = () => {
 
   };
 
@@ -64,7 +69,11 @@ export default function ListCategorie(props) {
                 </TableCell>
                 <TableCell align="left" width={240}>
                   <button className='btnList'>Détail</button>
-                  <button className='btnList'>Modifier</button>
+                  <button className='btnList'>
+                    <Link to={{ pathname: "add" }} state={{ data: row }} style={{ color: "#111" }}>
+                      Modifier
+                    </Link>
+                  </button>
                   <button className='btnList' onClick={() => deleteCategorie(row.id)}>Supprimer</button>
                 </TableCell>
               </TableRow>

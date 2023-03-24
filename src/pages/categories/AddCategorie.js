@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaHandPointLeft } from 'react-icons/fa';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import "./Categorie.css";
-import { Link } from 'react-router-dom';
-import { newCategorie } from "../../features/Categories";
+import { Link, useLocation } from 'react-router-dom';
+import { newCategorie, updateCategorie } from "../../features/Categories";
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/loader/Loader';
+import { baseUrlImage } from '../../bases/basesUrl';
 
 const AddCategorie = () => {
 
@@ -15,25 +16,46 @@ const AddCategorie = () => {
     const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
 
-    const [btnClic, setBtnClic] = useState(false);
-
     const dispatch = useDispatch();
-
     const isLoading = useSelector(state => state.categories);
+
+    const location = useLocation();
+    const { state } = location;
 
     const handleImage = (e) => {
         setImage(e.target.files[0]);
         setFile(URL.createObjectURL(e.target.files[0]))
     };
 
+    useEffect(() => {
+        if (state) {
+            setNom(state && state.data && state.data.nom);
+            setImage(state && state.data && state.data.url);
+            setDescription(state && state.data && state.data.description);
+        }
+    }, [state]);
+
     const addCategorie = (e) => {
-        setBtnClic(true);
         let formData = new FormData();
         formData.append('nom', nom);
         formData.append('image', image);
         formData.append('description', description);
 
         dispatch(newCategorie(formData));
+    };
+
+    const updCategorie = (e) => {
+        let formData = new FormData();
+        formData.append('nom', nom);
+        formData.append('image', image);
+        formData.append('description', description);
+        formData.append('idCategorie', state && state.data && state.data.id);
+
+        let data = {}
+        data.form = formData;
+        data.id = state && state.data && state.data.id;
+
+        dispatch(updateCategorie(data));
     };
 
     return (
@@ -57,7 +79,11 @@ const AddCategorie = () => {
                                     Catégories
                                 </Link>
                                 <span style={{ fontSize: "15px", color: "#1976d2", }}>/</span>
-                                <span style={{ fontSize: "17px" }}>Ajout</span>
+                                <span style={{ fontSize: "17px" }}>
+                                    {
+                                        state ? `Modification de ${state && state.data && state.data.nom}` : "Ajout"
+                                    }
+                                </span>
                             </h4>
                         </div>
                     </div>
@@ -72,6 +98,7 @@ const AddCategorie = () => {
                                         className="form-control"
                                         id="exampleFormControlInput1"
                                         placeholder="Entrer un nom"
+                                        value={nom}
                                         onChange={(e) => setNom(e.target.value)}
                                     />
                                 </div>
@@ -90,6 +117,7 @@ const AddCategorie = () => {
                                         className="form-control"
                                         id="exampleFormControlTextarea1"
                                         onChange={(e) => setDescription(e.target.value)}
+                                        value={description}
                                         rows="3"></textarea>
                                 </div>
 
@@ -100,7 +128,7 @@ const AddCategorie = () => {
                                     {
                                         file ? <img src={file} alt="" className='img-thumbnail' /> :
                                             image ?
-                                                <img src={image ? image + "/" + image : ""}
+                                                <img src={image ? baseUrlImage + "/" + image : ""}
                                                     className='img-thumbnail' alt="catégorie" />
                                                 : <div className='noneImage'>
                                                     <FaHandPointLeft size={20} />
@@ -112,11 +140,11 @@ const AddCategorie = () => {
                         </div>
                         <button
                             className='btn btn-primary'
-                            onClick={addCategorie}
+                            onClick={!state ? addCategorie : updCategorie}
                             disabled={nom && description ? false : true}
                         >
                             {
-                                isLoading && isLoading.loading ? <Loader /> : "Ajouter"
+                                isLoading && isLoading.loading ? <Loader /> : state ? "Modifier" : "Ajouter"
                             }
 
                         </button>

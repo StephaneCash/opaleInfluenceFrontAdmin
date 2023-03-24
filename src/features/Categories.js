@@ -28,6 +28,19 @@ export const newCategorie = createAsyncThunk("categories/create",
         }
     });
 
+export const updateCategorie = createAsyncThunk("categories/update",
+    async (data) => {
+        try {
+            //  let navigate = useNavigate();
+            const resp = await axios.put(`${baseUrl}/categories/${data && data.id}`, data && data.form);
+            toast.success('Catégorie modifiée avec succès');
+            //navigate("/categories");
+            return resp.data;
+        } catch (error) {
+            console.log(error.response);
+        }
+    });
+
 export const deleteCategory = createAsyncThunk("categories/delete",
     async (id) => {
         try {
@@ -88,6 +101,23 @@ export const categoriesSlice = createSlice({
             state.isSuccess = true;
         },
         [deleteCategory.rejected]: (state, action) => {
+            state.loading = false;
+            state.isSuccess = false;
+        },
+        // UPDATE CATEGORIE
+        [updateCategorie.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [updateCategorie.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.value = state.value.map(val => {
+                if (val.id === action.payload.id) {
+                    return [...state.value, val = action.payload]
+                }
+            })
+            state.isSuccess = true;
+        },
+        [updateCategorie.rejected]: (state, action) => {
             state.loading = false;
             state.isSuccess = false;
         }
