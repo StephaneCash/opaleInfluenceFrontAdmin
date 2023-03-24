@@ -13,9 +13,7 @@ const Categorie = () => {
 
     // const { userConnected } = useContext(ContextApp);
 
-    const categoriesList = useSelector((state) => state);
-
-    console.log(categoriesList)
+    const categoriesList = useSelector((state) => state.categories);
 
     return (
         <>

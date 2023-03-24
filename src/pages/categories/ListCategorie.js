@@ -1,44 +1,44 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { Avatar } from '@mui/material';
+import { baseUrlImage } from '../../bases/basesUrl';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'nom', headerName: 'Nom', width: 130 },
+  { field: 'description', headerName: 'Description', width: 250, scrollX: "auto" },
   {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
+    headerName: 'Image',
     width: 90,
+    renderCell: (params) => {
+      return (
+        <>
+          <Avatar src={baseUrlImage + "/" + params.row.url} />
+          {params.value}
+        </>
+      );
+    }
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    headerName: 'Image',
+    width: 90,
+    renderCell: (params) => {
+      return (
+        <>
+          <Avatar src={baseUrlImage + "/" + params.row.url} />
+          {params.value}
+        </>
+      );
+    }
   },
-];
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
 export default function ListCategorie(props) {
+  let data = props;
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={data.data.value}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}

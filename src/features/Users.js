@@ -25,7 +25,7 @@ export const newUser = createAsyncThunk("users/create", async (data, {
 })
 
 export const userSlice = createSlice({
-    name: "categories",
+    name: "users",
     initialState: {
         value: [],
         isSuccess: false,

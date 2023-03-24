@@ -7,7 +7,7 @@ export const getAllcategories = createAsyncThunk("categories/getData", async (ar
 }) => {
     try {
         const { data } = await axios.get(`${baseUrl}/categories`);
-        return data.data;
+        return data
     } catch (error) {
         rejectWithValue(error.response);
     }
@@ -18,6 +18,7 @@ export const newCategorie = createAsyncThunk("categories/create", async (data, {
 }) => {
     try {
         const resp = await axios.post(`${baseUrl}/categories`, data);
+        console.log(resp.data , " create")
         return resp.data;
     } catch (error) {
         rejectWithValue(error.response);
@@ -47,9 +48,9 @@ export const categoriesSlice = createSlice({
         [newCategorie.pending]: (state, action) => {
             state.loading = true;
         },
-        [newCategorie.fulfilled]: (state, { payload }) => {
+        [newCategorie.fulfilled]: (state, action) => {
             state.loading = false;
-            state.value = [...state, payload.data];
+            state.value.push(action.payload)
             state.isSuccess = true;
         },
         [newCategorie.rejected]: (state, action) => {
