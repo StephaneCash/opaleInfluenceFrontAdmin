@@ -8,15 +8,15 @@ const DetailImage = (props) => {
     let data = props.data;
 
     return (
-        <Modal show={show} className='modalImage' style={{marginTop:"50px"}}>
+        <Modal show={show} className='modalImage' style={{ marginTop: "50px" }}>
             <Modal.Header style={{ backgroundColor: '#ddd', color: '#111' }}>
                 Image {data && data.nom && data.nom}
             </Modal.Header>
             <Modal.Body>
-                <img src={`${baseUrlImage}/${data.url}`} alt={data.nom} style={{ width: "100%"}} />
+                <img src={`${baseUrlImage}/${data.url}`} alt={data.nom} style={{ width: "100%" }} />
             </Modal.Body>
             <Modal.Footer>
-                <button onClick={props.closeModal}>Fermer</button>
+                <button style={{ border: "1px solid #ddd", padding: "5px", borderRadius: "4px" }} onClick={props.closeModal}>Fermer</button>
             </Modal.Footer>
         </Modal>
     )

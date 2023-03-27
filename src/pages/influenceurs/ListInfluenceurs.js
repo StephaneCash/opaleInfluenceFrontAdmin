@@ -14,80 +14,85 @@ import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
 
 export default function ListInfluenceurs(props) {
-  let data = props.data;
-  let valueSearch = props.valueSearch && props.valueSearch.toLowerCase();
+    let data = props.data;
+    let valueSearch = props.valueSearch && props.valueSearch.toLowerCase();
 
-  let dispatch = useDispatch();
+    let dispatch = useDispatch();
 
-  const deleteCategorie = (id) => {
-    swal({
-      text: "Etes-vous sûr de vouloir supprimer cet influenceur ?",
-      buttons: true,
-      dangerMode: true
-    }).then((willDelete) => {
-      if (willDelete) {
-      //  dispatch(deleteCategory(id));
-      }
-    }).catch((error) => {
-      console.log(error);
-    });
+    const deleteCategorie = (id) => {
+        swal({
+            text: "Etes-vous sûr de vouloir supprimer cet influenceur ?",
+            buttons: true,
+            dangerMode: true
+        }).then((willDelete) => {
+            if (willDelete) {
+                //  dispatch(deleteCategory(id));
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
 
-  };
+    };
 
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Nom</TableCell>
-            <TableCell align="left">Description</TableCell>
-            <TableCell align="left">Photo</TableCell>
-            <TableCell align="left">Options</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data && data.value && data.value.length > 0 ? data.value.filter(val => {
-            const nom = val.nom.toLowerCase();
-            return nom.includes(valueSearch)
-          })
-            .map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell width={200}>{row.nom}</TableCell>
-                <TableCell align="left" width={500}>{
-                  row.description.split(".")[0] ? row.description.split(".")[0] + "..." : row.description
-                }</TableCell>
-                <TableCell align="left">
-                  <Avatar alt="Remy Sharp" src={baseUrlImage + "/" + row.url} />
-                </TableCell>
-                <TableCell align="left" width={240}>
-                  <button className='btnList'>Détail</button>
-                  <button className='btnList'>
-                    <Link to={{ pathname: "add" }} state={{ data: row }} style={{ color: "#111" }}>
-                      Modifier
-                    </Link>
-                  </button>
-                  <button className='btnList' onClick={() => deleteCategorie(row.id)}>Supprimer</button>
-                </TableCell>
-              </TableRow>
-            )) :
-            data && data.value && data.value.length === 0 ?
-              <TableCell colSpan="4px"
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                Pas de données disponibles.
-              </TableCell> :
+    return (
+        <TableContainer component={Paper}>
+            <h5 className='ms-2 mt-2'>Influenceurs {data && data.value && data.value.length > 0 ? `(${data.value.length})` : `(0)`}</h5>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>#</TableCell>
+                        <TableCell>Nom</TableCell>
+                        <TableCell align="left">Pseudo</TableCell>
+                        <TableCell align="left">Description</TableCell>
+                        <TableCell align="left">Photo</TableCell>
+                        <TableCell align="left">Actions</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {data && data.value && data.value.length > 0 ? data.value.filter(val => {
+                        const nom = val.nom.toLowerCase();
+                        return nom.includes(valueSearch)
+                    })
+                        .map((row, i) => (
+                            <TableRow
+                                key={row.id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell width={60}>{i + 1}</TableCell>
+                                <TableCell width={170}>{row.nom}</TableCell>
+                                <TableCell width={200}>{row.pseudo}</TableCell>
+                                <TableCell align="left" width={500}>{
+                                    row.detail.split(".")[0] ? row.detail.split(".")[0] + "..." : row.detail
+                                }</TableCell>
+                                <TableCell align="left">
+                                    <Avatar alt="Remy Sharp" src={baseUrlImage + "/" + row.url} />
+                                </TableCell>
+                                <TableCell align="left" width={240}>
+                                    <button className='btnList'>Détail</button>
+                                    <button className='btnList'>
+                                        <Link to={{ pathname: "add" }} state={{ data: row }} style={{ color: "#111" }}>
+                                            Modifier
+                                        </Link>
+                                    </button>
+                                    <button className='btnList' onClick={() => deleteCategorie(row.id)}>Supprimer</button>
+                                </TableCell>
+                            </TableRow>
+                        )) :
+                        data && data.value && data.value.length === 0 ?
+                            <TableCell colSpan="4px"
+                                style={{
+                                    textAlign: "center",
+                                }}
+                            >
+                                Pas de données disponibles.
+                            </TableCell> :
 
-              <TableCell align="left" style={{ textAlign: "center" }} colSpan="4px">
-                <LoaderBlue />
-              </TableCell>
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+                            <TableCell align="left" style={{ textAlign: "center" }} colSpan="4px">
+                                <LoaderBlue />
+                            </TableCell>
+                    }
+                </TableBody>
+            </Table>
+        </TableContainer>
+    );
 }

@@ -2,41 +2,36 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { baseUrl } from "../bases/basesUrl";
-import { useNavigate } from "react-router-dom";
 
-export const getAllcategories = createAsyncThunk("categories/getData", async (arg, {
+export const getAllInfluenceurs = createAsyncThunk("influenceurs/getData", async (arg, {
     rejectWithValue
 }) => {
     try {
-        const { data } = await axios.get(`${baseUrl}/categories`);
+        const { data } = await axios.get(`${baseUrl}/influenceurs`);
         return data
     } catch (error) {
         rejectWithValue(error.response);
     }
 });
 
-export const newCategorie = createAsyncThunk("categories/create",
-
-    async (data, {rejectWithValue }) => {
+export const newInfluenceur = createAsyncThunk("influenceurs/create",
+    async (data) => {
         try {
             //  let navigate = useNavigate();
-            const resp = await axios.post(`${baseUrl}/categories`, data);
-            if (resp && resp.data) {
-                toast.success('Catégorie ajouter avec succès');
-            }
+            const resp = await axios.post(`${baseUrl}/influenceurs`, data);
+            toast.success('Catégorie ajouter avec succès');
             //navigate("/categories");
             return resp.data;
         } catch (error) {
             console.log(error.response);
-            rejectWithValue (error.response)
         }
     });
 
-export const updateCategorie = createAsyncThunk("categories/update",
+export const updateInfluenceur = createAsyncThunk("influenceurs/update",
     async (data) => {
         try {
             //  let navigate = useNavigate();
-            const resp = await axios.put(`${baseUrl}/categories/${data && data.id}`, data && data.form);
+            const resp = await axios.put(`${baseUrl}/influenceurs/${data && data.id}`, data && data.form);
             toast.success('Catégorie modifiée avec succès');
             //navigate("/categories");
             return resp.data;
@@ -45,11 +40,11 @@ export const updateCategorie = createAsyncThunk("categories/update",
         }
     });
 
-export const deleteCategory = createAsyncThunk("categories/delete",
+export const deleteInfluenceur = createAsyncThunk("influenceurs/delete",
     async (id) => {
         try {
             //  let navigate = useNavigate();
-            await axios.delete(`${baseUrl}/categories/${id}`);
+            await axios.delete(`${baseUrl}/influenceurs/${id}`);
             toast.success('Catégorie supprimée avec succès');
             //navigate("/categories");
             return id;
@@ -58,61 +53,61 @@ export const deleteCategory = createAsyncThunk("categories/delete",
         }
     })
 
-export const categoriesSlice = createSlice({
-    name: "categories",
+export const influenceurSlice = createSlice({
+    name: "influenceurs",
     initialState: {
         value: [],
         isSuccess: false,
         loading: false
     },
     extraReducers: {
-        //GET ALL CATEGORIES
-        [getAllcategories.pending]: (state, { payload }) => {
+        //GET ALL INFLUENCEURS
+        [getAllInfluenceurs.pending]: (state, { payload }) => {
             state.loading = true;
             state.isSuccess = false;
         },
-        [getAllcategories.fulfilled]: (state, { payload }) => {
+        [getAllInfluenceurs.fulfilled]: (state, action) => {
             state.loading = false;
-            state.value = payload;
+            state.value = action.payload;
             state.isSuccess = true;
         },
-        [getAllcategories.rejected]: (state, { payload }) => {
+        [getAllInfluenceurs.rejected]: (state, { payload }) => {
             state.loading = false;
             state.isSuccess = false;
         },
-        //CREATE CATEGORIE
-        [newCategorie.pending]: (state, action) => {
+        //CREATE INFLUENCEUR
+        [newInfluenceur.pending]: (state, action) => {
             state.loading = true;
         },
-        [newCategorie.fulfilled]: (state, action) => {
+        [newInfluenceur.fulfilled]: (state, action) => {
             state.loading = false;
             state.value.push(action.payload)
             state.isSuccess = true;
         },
-        [newCategorie.rejected]: (state, action) => {
+        [newInfluenceur.rejected]: (state, action) => {
             state.loading = false;
             state.isSuccess = false;
         },
-        // DELETE CATGORIE
-        [deleteCategory.pending]: (state, action) => {
+        // DELETE INFLUENCEUR
+        [deleteInfluenceur.pending]: (state, action) => {
             state.loading = true;
         },
-        [deleteCategory.fulfilled]: (state, action) => {
+        [deleteInfluenceur.fulfilled]: (state, action) => {
             state.loading = false;
             state.value = state.value.filter(val => {
                 return val.id !== action.payload
             })
             state.isSuccess = true;
         },
-        [deleteCategory.rejected]: (state, action) => {
+        [deleteInfluenceur.rejected]: (state, action) => {
             state.loading = false;
             state.isSuccess = false;
         },
-        // UPDATE CATEGORIE
-        [updateCategorie.pending]: (state, action) => {
+        // UPDATE INFLUENCEUR
+        [updateInfluenceur.pending]: (state, action) => {
             state.loading = true;
         },
-        [updateCategorie.fulfilled]: (state, action) => {
+        [updateInfluenceur.fulfilled]: (state, action) => {
             state.loading = false;
             state.isSuccess = true;
             state.value = state.value.filter(val => {
@@ -120,11 +115,11 @@ export const categoriesSlice = createSlice({
             })
             state.value.push(action.payload);
         },
-        [updateCategorie.rejected]: (state, action) => {
+        [updateInfluenceur.rejected]: (state, action) => {
             state.loading = false;
             state.isSuccess = false;
         }
     }
 });
 
-export default categoriesSlice;
+export default influenceurSlice;

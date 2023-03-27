@@ -15,7 +15,7 @@
     box-shadow: none !important;
 }
 
-.categories .main .alert {
+.categories .main .alertInputSearch {
     width: 100% !important;
     height: 100px !important;
     background-color: #fff !important;
@@ -24,14 +24,14 @@
     align-items: center !important;
 }
 
-.categories .main .alert .input-group {
+.categories .main .alertInputSearch .input-group {
     display: flex !important;
     align-items: center !important;
     gap: 1rem !important;
     width: 100% !important;
 }
 
-.categories .main .alert .input-group input {
+.categories .main .alertInputSearch .input-group input {
     box-shadow: none !important;
 }
 
@@ -110,4 +110,8 @@
 
 .swal-button--danger {
     background-color: #1976d2 !important
+}
+
+.categories .alertListCat{
+    display: flex;
 }

@@ -20,7 +20,7 @@ const Categorie = () => {
                     <Leftbar />
                 </div>
                 <div className='col-sm-10 main'>
-                    <div className='alert alert-success'>
+                    <div className='alert alert-success alertInputSearch'>
                         <div className='col-sm-8'>
                             <div className="input-group">
                                 <input

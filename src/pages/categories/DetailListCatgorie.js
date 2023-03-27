@@ -29,8 +29,10 @@ export default function DetailListCatgorie(props) {
 
     return (
         <TableContainer component={Paper} style={{ borderTop: "1px solid #ddd" }}>
-            <h5 className='ms-2 mt-2'>Détail de {data && data.nom}</h5>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table" style={{ borderTop: "1px solid #ddd" }}>
+            <div className='alert alert-primary'>
+                <h5>Détail de {data && data.nom}</h5>
+            </div>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Nom</TableCell>
@@ -45,7 +47,9 @@ export default function DetailListCatgorie(props) {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell width={200}>{data.nom}</TableCell>
-                        <TableCell align="left" style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400" }}>
+                        <TableCell
+                            align="left"
+                            style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400", lineHeight: "1.6rem" }}>
                             {
                                 data.description
                             }
@@ -59,7 +63,7 @@ export default function DetailListCatgorie(props) {
                                 sx={{ width: 100, height: 100 }}
                             />
                         </TableCell>
-                        <TableCell align="left" width={240}>
+                        <TableCell align="left" width={200}>
                             <button className='btnList'>
                                 <Link to={{ pathname: "addInfluenceurs" }} state={{ data: data }} style={{ color: "#111" }}>
                                     Ajouter des influenceurs

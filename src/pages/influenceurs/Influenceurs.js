@@ -15,6 +15,8 @@ const Influenceurs = () => {
 
     const [valueSearch, setValueSearch] = useState('');
 
+    console.log(influenceurList)
+
     return (
         <>
             <Navbar />

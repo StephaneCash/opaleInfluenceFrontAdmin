@@ -11,16 +11,19 @@ import { getAllcategories } from './features/Categories';
 import { getAllUsers } from './features/Users';
 import { combineReducers } from "redux";
 import userSlice from './features/Users';
+import influenceurSlice, { getAllInfluenceurs } from "./features/Influenceurs"
 
 const store = configureStore({
   reducer: combineReducers({
     categories: categoriesSlice.reducer,
-    users: userSlice.reducer
+    users: userSlice.reducer,
+    influenceurs: influenceurSlice.reducer
   })
 });
 
 store.dispatch(getAllcategories());
 store.dispatch(getAllUsers());
+store.dispatch(getAllInfluenceurs());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
