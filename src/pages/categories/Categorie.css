@@ -104,6 +104,7 @@
     font-family: "Roboto" !important;
     padding-bottom: 10px;
     font-size: 14px !important;
+    color: #555 !important;
 }
 
 .categories th {
@@ -114,6 +115,11 @@
     background-color: #1976d2 !important
 }
 
-.categories .alertListCat{
+.categories .alertListCat {
     display: flex;
+}
+
+tr:hover {
+    background-color: #efefef !important;
+    cursor: pointer;
 }

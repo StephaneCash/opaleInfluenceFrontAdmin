@@ -78,7 +78,7 @@ export default function ListCategorie(props) {
         <h6>Catégories</h6>
       </div>
       <InfiniteScroll
-        dataLength={data && data.value && data.value.length}
+        dataLength={categories && categories.length}
         next={loadMore}
         hasMore={hasMore}
         loader={
@@ -169,7 +169,7 @@ export default function ListCategorie(props) {
                 </TableCell> :
 
                 <TableCell align="left" style={{ textAlign: "center" }} colSpan="6px">
-                  <LoaderBlue />
+                  ''
                 </TableCell>
             }
 

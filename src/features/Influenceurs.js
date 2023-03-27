@@ -8,7 +8,8 @@ export const getAllInfluenceurs = createAsyncThunk("influenceurs/getData", async
 }) => {
     try {
         const { data } = await axios.get(`${baseUrl}/influenceurs`);
-        return data
+        const arr = data.slice(0, arg)
+        return arr
     } catch (error) {
         rejectWithValue(error.response);
     }
