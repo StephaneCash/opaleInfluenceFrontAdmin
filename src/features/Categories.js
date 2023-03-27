@@ -110,12 +110,11 @@ export const categoriesSlice = createSlice({
         },
         [updateCategorie.fulfilled]: (state, action) => {
             state.loading = false;
-            state.value = state.value.map(val => {
-                if (val.id === action.payload.id) {
-                    return [...state.value, val = action.payload]
-                }
-            })
             state.isSuccess = true;
+            state.value = state.value.filter(val => {
+                return val.id !== action.payload.id;
+            })
+            state.value.push(action.payload);
         },
         [updateCategorie.rejected]: (state, action) => {
             state.loading = false;
