@@ -5,6 +5,8 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import RoutesPrivate from './RoutesPrivate';
 import Categorie from '../pages/categories/Categorie';
 import AddCategorie from '../pages/categories/AddCategorie';
+import Influenceurs from '../pages/influenceurs/Influenceurs';
+import DetailCategorie from '../pages/categories/DetailCategorie';
 
 const RoutesFree = () => {
     return (
@@ -16,6 +18,8 @@ const RoutesFree = () => {
                     <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/categories' element={<Categorie />} />
                     <Route path='/categories/add' element={<AddCategorie />} />
+                    <Route path='/influenceurs' element={<Influenceurs />} />
+                    <Route path='/categories/detail' element={<DetailCategorie />} />
                 </Route>
             </Routes>
         </BrowserRouter>

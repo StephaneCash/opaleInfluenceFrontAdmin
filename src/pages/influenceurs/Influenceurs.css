@@ -1,0 +1,114 @@
+.influenceurs {
+    display: flex !important;
+    margin-top: 70px !important;
+    font-family: "Roboto";
+    font-size: 14px !important;
+}
+
+
+.influenceurs .main {
+    margin-top: 20px !important;
+    padding-right: 2rem !important;
+}
+
+.influenceurs .form-control,
+.influenceurs textarea {
+    box-shadow: none !important;
+}
+
+.influenceurs .main .alert {
+    width: 100% !important;
+    height: 100px !important;
+    background-color: #fff !important;
+    border: 1px solid #fff !important;
+    display: flex;
+    align-items: center !important;
+}
+
+.influenceurs .main .alert .input-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    width: 100% !important;
+}
+
+.influenceurs .main .alert .input-group input {
+    box-shadow: none !important;
+}
+
+.influenceurs .main .col-sm-4 .btn-primary {
+    display: flex !important;
+    align-items: center !important;
+    gap: .5rem !important;
+    float: right !important;
+    background-color: #1976d2 !important;
+}
+
+.influenceurs .tableCategorie {
+    background-color: #fff !important;
+    padding: 1rem;
+}
+
+.influenceurs a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.influenceurs a:hover {
+    color: #fff;
+}
+
+.influenceurs .retour {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    color: #1976d2;
+    font-size: 15px;
+}
+
+.influenceurs .imageCard {
+    height: 400px;
+}
+
+.influenceurs .imageCard .card {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.influenceurs .imageCard .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.influenceurs .noneImage {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    height: 200px;
+    border: 3px dotted #1976d2;
+    gap: 1rem;
+}
+
+.influenceurs .btnList {
+    border: 1px solid silver;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+.influenceurs td {
+    padding-top: 10px;
+    font-family: "Roboto" !important;
+    padding-bottom: 10px;
+    font-size: 14px !important;
+}
+
+.influenceurs th {
+    font-weight: 700;
+}
+
+.swal-button--danger {
+    background-color: #1976d2 !important
+}

@@ -1,21 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
-import "./Categorie.css"
-import ListCategorie from './ListCategorie';
+import "./Influenceurs.css"
 import { useSelector } from 'react-redux';
+import ListInfluenceurs from './ListInfluenceurs';
 
-const Categorie = () => {
+const Influenceurs = () => {
 
-    const categoriesList = useSelector((state) => state.categories);
+    // const { userConnected } = useContext(ContextApp);
+
+    const influenceurList = useSelector((state) => state.influenceurs);
+
     const [valueSearch, setValueSearch] = useState('');
 
     return (
         <>
             <Navbar />
-            <div className='col-sm-12 categories'>
+            <div className='col-sm-12 influenceurs'>
                 <div className='col-sm-2'>
                     <Leftbar />
                 </div>
@@ -29,9 +32,6 @@ const Categorie = () => {
                                     placeholder='Rechercher...'
                                     className="form-control"
                                     onChange={(e) => setValueSearch(e.target.value)}
-                                    style={{
-                                        border:"1px solid #1976d2"
-                                    }}
                                 />
                                 <FaSearch color='#1976d2' />
                             </div>
@@ -47,8 +47,8 @@ const Categorie = () => {
                     </div>
 
                     <div className='col-sm-12 tableCategorie'>
-                        <ListCategorie
-                            data={categoriesList}
+                        <ListInfluenceurs
+                            data={influenceurList}
                             valueSearch={valueSearch}
                         />
                     </div>
@@ -58,4 +58,4 @@ const Categorie = () => {
     )
 }
 
-export default Categorie
+export default Influenceurs
