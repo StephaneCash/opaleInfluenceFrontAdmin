@@ -2,14 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { baseUrl } from "../bases/basesUrl";
-import { useNavigate } from "react-router-dom";
 
 export const getAllcategories = createAsyncThunk("categories/getData", async (arg, {
     rejectWithValue
 }) => {
     try {
         const { data } = await axios.get(`${baseUrl}/categories`);
-        return data
+        const array = data.slice(0, arg)
+        return array;
     } catch (error) {
         rejectWithValue(error.response);
     }
@@ -17,7 +17,7 @@ export const getAllcategories = createAsyncThunk("categories/getData", async (ar
 
 export const newCategorie = createAsyncThunk("categories/create",
 
-    async (data, {rejectWithValue }) => {
+    async (data, { rejectWithValue }) => {
         try {
             //  let navigate = useNavigate();
             const resp = await axios.post(`${baseUrl}/categories`, data);
@@ -28,7 +28,7 @@ export const newCategorie = createAsyncThunk("categories/create",
             return resp.data;
         } catch (error) {
             console.log(error.response);
-            rejectWithValue (error.response)
+            rejectWithValue(error.response)
         }
     });
 

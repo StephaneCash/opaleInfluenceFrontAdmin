@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import "./Categorie.css"
 import ListCategorie from './ListCategorie';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllcategories } from '../../features/Categories';
 
 const Categorie = () => {
 
     const categoriesList = useSelector((state) => state.categories);
     const [valueSearch, setValueSearch] = useState('');
+
+    const dispatch = useDispatch();
+
 
     return (
         <>
@@ -29,9 +33,6 @@ const Categorie = () => {
                                     placeholder='Rechercher...'
                                     className="form-control"
                                     onChange={(e) => setValueSearch(e.target.value)}
-                                    style={{
-                                        border:"1px solid #1976d2"
-                                    }}
                                 />
                                 <FaSearch color='#1976d2' />
                             </div>

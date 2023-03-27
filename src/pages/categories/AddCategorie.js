@@ -67,7 +67,7 @@ const AddCategorie = () => {
                 </div>
                 <div className='col-sm-10 main'>
                     <div className='col-sm-12'>
-                        <div className='alert alert-success'>
+                        <div className='alert alert-primary' style={{ border: "1px solid #ddd", background: "#fff" }}>
                             <h4 style={{
                                 display: "flex",
                                 alignItems: "center",
