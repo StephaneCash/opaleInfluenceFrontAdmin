@@ -31,9 +31,8 @@ export const newInfluenceur = createAsyncThunk("influenceurs/create",
 export const updateInfluenceur = createAsyncThunk("influenceurs/update",
     async (data) => {
         try {
-            //  let navigate = useNavigate();
             const resp = await axios.put(`${baseUrl}/influenceurs/${data && data.id}`, data && data.form);
-            toast.success('Catégorie modifiée avec succès');
+            toast.success('Influenceur modifié avec succès');
             //navigate("/categories");
             return resp.data;
         } catch (error) {
@@ -46,7 +45,7 @@ export const deleteInfluenceur = createAsyncThunk("influenceurs/delete",
         try {
             //  let navigate = useNavigate();
             await axios.delete(`${baseUrl}/influenceurs/${id}`);
-            toast.success('Catégorie supprimée avec succès');
+            toast.success('Influenceur supprimé avec succès');
             //navigate("/categories");
             return id;
         } catch (error) {

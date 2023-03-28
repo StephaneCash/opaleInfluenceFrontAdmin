@@ -7,7 +7,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/loader/Loader';
 import { baseUrlImage } from '../../bases/basesUrl';
-import { newInfluenceur } from '../../features/Influenceurs';
+import { newInfluenceur, updateInfluenceur } from '../../features/Influenceurs';
 
 const AddInfluenceur = () => {
 
@@ -66,15 +66,19 @@ const AddInfluenceur = () => {
     const updateInfluenceurHandle = (e) => {
         let formData = new FormData();
         formData.append('nom', nom);
+        formData.append('postnom', postnom);
+        formData.append('prenom', prenom);
+        formData.append('pseudo', pseudo);
         formData.append('image', image);
+        formData.append('categorieId', categorie);
         formData.append('detail', detail);
-        formData.append('idCategorie', state && state.data && state.data.id);
+        formData.append('textDetaillle', textDetail);
 
         let data = {}
         data.form = formData;
         data.id = state && state.data && state.data.id;
 
-        //  dispatch(updateCategorie(data));
+         dispatch(updateInfluenceur(data));
     };
 
     return (
