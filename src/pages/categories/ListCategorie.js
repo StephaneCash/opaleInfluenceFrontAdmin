@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 import { deleteCategory, getAllcategories } from '../../features/Categories';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
-import { FaInfo, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { FaFilter, FaInfo, FaRegEdit, FaRegTrashAlt, FaUsers } from 'react-icons/fa';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function ListCategorie(props) {
@@ -52,19 +52,24 @@ export default function ListCategorie(props) {
 
   const loadMore = () => {
     if (categories.length === count) {
-      setCategories(categories && categories.concat(categories))
-      setHasMore(true)
+      setCategories(categories && categories.concat(categories));
+      setHasMore(true);
       setCount(count + 10);
     }
     else {
-      setHasMore(false)
+      setHasMore(false);
       setCount(count + 10);
     }
   };
 
   const handleCheckBox = (id) => {
     setShowBtnAddInf(!showBtnAddInf);
+    console.log(id)
   };
+
+  React.useEffect(() => {
+    setShowBtnAddInf(false);
+  }, []);
 
   return (
     <TableContainer component={Paper} id="scrollableDiv"
@@ -73,9 +78,26 @@ export default function ListCategorie(props) {
         overflow: 'auto',
       }}>
       <div className='alert alert-primary' style={{ background: '#fff', border: "1px solid #ddd" }}>
-        <span>Pages</span> / <span>Catégories {data && data.value && data.value.length > 0 ? `(${data.value.length})` : `(0)`}</span>
-        <br />
-        <h6>Catégories</h6>
+        <div className='headerListCategorie'>
+          <div>
+            <span>Pages</span> / <span>Catégories {data && data.value && data.value.length > 0 ? `(${data.value.length})` : `(0)`}</span>
+            <br />
+            <h6>Catégories</h6>
+          </div>
+          <div>
+            {
+              showBtnAddInf ? <button
+                className='btn btn-success'
+                style={{
+                  backgroundColor: '#ddd', color: "#333",
+                  border: "1px solid #fff", boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
+                }}>
+                <FaUsers /> Ajouter des influenceurs
+              </button>
+                : <FaFilter />
+            }
+          </div>
+        </div>
       </div>
       <InfiniteScroll
         dataLength={categories && categories.length}
