@@ -18,13 +18,15 @@ export const getAllInfluenceurs = createAsyncThunk("influenceurs/getData", async
 export const newInfluenceur = createAsyncThunk("influenceurs/create",
     async (data) => {
         try {
-            //  let navigate = useNavigate();
             const resp = await axios.post(`${baseUrl}/influenceurs`, data);
             toast.success('Influenceur ajouté avec succès');
-            //navigate("/categories");
             return resp.data;
         } catch (error) {
             console.log(error.response);
+            if (error.response && error.response.status === 400) {
+                toast.error(error && error.response && error.response.data && error.response.data.message);
+                console.log("kk", error.response.data && error.response.data.message)
+            }
         }
     });
 
