@@ -20,7 +20,7 @@ export const newInfluenceur = createAsyncThunk("influenceurs/create",
         try {
             //  let navigate = useNavigate();
             const resp = await axios.post(`${baseUrl}/influenceurs`, data);
-            toast.success('Catégorie ajouter avec succès');
+            toast.success('Influenceur ajouté avec succès');
             //navigate("/categories");
             return resp.data;
         } catch (error) {

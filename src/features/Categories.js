@@ -22,7 +22,7 @@ export const newCategorie = createAsyncThunk("categories/create",
             //  let navigate = useNavigate();
             const resp = await axios.post(`${baseUrl}/categories`, data);
             if (resp && resp.data) {
-                toast.success('Catégorie ajouter avec succès');
+                toast.success('Catégorie ajoutée avec succès');
             }
             //navigate("/categories");
             return resp.data;

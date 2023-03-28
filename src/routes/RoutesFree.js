@@ -7,6 +7,7 @@ import Categorie from '../pages/categories/Categorie';
 import AddCategorie from '../pages/categories/AddCategorie';
 import Influenceurs from '../pages/influenceurs/Influenceurs';
 import DetailCategorie from '../pages/categories/DetailCategorie';
+import AddInfluenceur from '../pages/influenceurs/AddInfluenceur';
 
 const RoutesFree = () => {
     return (
@@ -20,6 +21,7 @@ const RoutesFree = () => {
                     <Route path='/categories/add' element={<AddCategorie />} />
                     <Route path='/influenceurs' element={<Influenceurs />} />
                     <Route path='/categories/detail' element={<DetailCategorie />} />
+                    <Route path='/influenceurs/add' element={<AddInfluenceur />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -68,7 +68,7 @@
 }
 
 .categories .imageCard {
-    height: 400px;
+    height: 250px;
 }
 
 .categories .imageCard .card {
@@ -87,8 +87,8 @@
     justify-content: center !important;
     align-items: center !important;
     text-align: center !important;
-    height: 200px;
-    border: 3px dotted #1976d2;
+    height: 250px;
+    border: 2px dotted #1976d2;
     gap: 1rem;
 }
 
@@ -122,4 +122,8 @@
 tr:hover {
     background-color: #efefef !important;
     cursor: pointer;
+}
+
+.categories form{
+    font-size: 12px !important;
 }

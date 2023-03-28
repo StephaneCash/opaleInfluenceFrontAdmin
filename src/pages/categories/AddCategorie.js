@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaHandPointLeft } from 'react-icons/fa';
+import { FaHandPointLeft, FaTable } from 'react-icons/fa';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import "./Categorie.css";
@@ -75,8 +75,12 @@ const AddCategorie = () => {
                                 color: "#1976d2"
                             }}>
                                 <Link to="/categories"
-                                    style={{ fontSize: "16px", color: "#1976d2", textDecoration: "underline" }}>
-                                    Catégories
+                                    style={{
+                                        fontSize: "16px", color: "#1976d2", textDecoration: "underline",
+                                        display: "flex", alignItems: "center", gap: "5px", fontWeight: 'bold'
+                                    }}
+                                >
+                                    <FaTable /> Catégories
                                 </Link>
                                 <span style={{ fontSize: "15px", color: "#1976d2", }}>/</span>
                                 <span style={{ fontSize: "17px" }}>
@@ -91,25 +95,31 @@ const AddCategorie = () => {
                     <div className='col-sm-12 tableCategorie'>
                         <div className='row'>
                             <div className='col-sm-6'>
-                                <div className="form-group mb-3">
-                                    <label htmlFor="exampleFormControlInput1">Entrer un nom</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="exampleFormControlInput1"
-                                        placeholder="Entrer un nom"
-                                        value={nom}
-                                        onChange={(e) => setNom(e.target.value)}
-                                    />
-                                </div>
-                                <div className="form-group mb-3">
-                                    <label htmlFor="exampleFormControlFile1">Choisir une photo</label>
-                                    <input
-                                        type="file"
-                                        className="form-control"
-                                        id="exampleFormControlFile1"
-                                        onChange={handleImage}
-                                    />
+                                <div className='row'>
+                                    <div className='col-sm-6'>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="exampleFormControlInput1">Entrer un nom</label>
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                id="exampleFormControlInput1"
+                                                placeholder="Entrer un nom"
+                                                value={nom}
+                                                onChange={(e) => setNom(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='col-sm-6'>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="exampleFormControlFile1">Choisir une photo</label>
+                                            <input
+                                                type="file"
+                                                className="form-control"
+                                                id="exampleFormControlFile1"
+                                                onChange={handleImage}
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="form-group mb-3">
                                     <label htmlFor="exampleFormControlTextarea1">Description</label>
