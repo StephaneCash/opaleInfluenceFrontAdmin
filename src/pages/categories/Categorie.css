@@ -133,3 +133,30 @@ tr:hover {
     justify-content: space-between;
     align-items: center;
 }
+
+.categories .tableCategorie .grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+    gap: 1rem;
+}
+
+.categories .tableCategorie .grille .card {
+    width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.categories .tableCategorie .grille .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    transition: all .3s;
+}
+
+.categories .tableCategorie .grille .card img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    border-radius: 4px;
+}

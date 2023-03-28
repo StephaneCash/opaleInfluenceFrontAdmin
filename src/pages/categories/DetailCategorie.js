@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
+import { baseUrlImage } from '../../bases/basesUrl';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import "./Categorie.css"
@@ -18,6 +19,8 @@ const DetailCategorie = () => {
             setDtata(state.data)
         }
     }, [state]);
+
+    console.log(data)
 
     return (
         <>
@@ -40,6 +43,38 @@ const DetailCategorie = () => {
                         <DetailListCatgorie
                             data={data}
                         />
+                    </div>
+
+                    <div className='col-sm-12 mt-3 tableCategorie'>
+                        <div className='alert alert-primary'>
+                            <h5>Influenceurs</h5>
+                        </div>
+
+                        {
+                            data && data.influenceurs.length > 0 ? <div className='grille'>
+                                {
+                                    data.influenceurs.map(val => {
+                                        return <div className='card'>
+                                            <img src={baseUrlImage + '/' + val.url} alt={val.nom} />
+                                            <div className='card-body'>
+                                                <p>{val.nom} {val.prenom} {val.pseudo}</p>
+                                                <p>
+                                                    <Link
+                                                        to="/influenceurs/detail"
+                                                        className='btn btn-outline'
+                                                        style={{ color: "#555", border: "1px solid #ddd" }}
+                                                    >
+                                                        Voir plus
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    })
+                                }
+                            </div> : <div className='text-center'>
+                                Aucun influenceur trouvé.
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

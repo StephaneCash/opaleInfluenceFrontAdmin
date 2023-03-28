@@ -29,8 +29,6 @@ const AddInfluenceur = () => {
 
     const categories = useSelector(state => state.categories);
 
-    console.log(categorie, "STATE")
-
     const handleImage = (e) => {
         setImage(e.target.files[0]);
         setFile(URL.createObjectURL(e.target.files[0]))
@@ -78,7 +76,7 @@ const AddInfluenceur = () => {
         data.form = formData;
         data.id = state && state.data && state.data.id;
 
-         dispatch(updateInfluenceur(data));
+        dispatch(updateInfluenceur(data));
     };
 
     return (
@@ -194,7 +192,8 @@ const AddInfluenceur = () => {
                                         placeholder='Description'
                                         onChange={(e) => setTextDetail(e.target.value)}
                                         value={textDetail}
-                                        rows="3"></textarea>
+                                        rows="3">
+                                    </textarea>
                                 </div>
                                 <div className="form-group mb-3">
                                     <label htmlFor="exampleFormControlTextarea1">Choisir une catégorie</label>
@@ -207,7 +206,7 @@ const AddInfluenceur = () => {
                                         {
                                             categories && categories.isSuccess ?
                                                 categories.value && categories.value.map((val, i) => {
-                                                    return <option value={state && categorie ? categorie : val.id} key={i} selected={
+                                                    return <option value={val.id} key={i} selected={
                                                         state ? categorie === val.id ? true : false : false
                                                     }>
                                                         {val.nom}
