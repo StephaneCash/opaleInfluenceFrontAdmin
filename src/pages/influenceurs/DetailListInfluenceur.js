@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Avatar } from '@mui/material';
 import { baseUrlImage } from '../../bases/basesUrl';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { dateParserFunction } from '../../utils';
 import DetailImage from './DetailImage';
@@ -20,6 +20,7 @@ export default function DetailListInfluenceur(props) {
     let dispatch = useDispatch();
     const [showModal, setShowModal] = React.useState(false);
     const [row, setRow] = React.useState('');
+    const [inf, setInf] = React.useState('');
 
     const showImage = (id) => {
         setShowModal(true);
@@ -29,6 +30,18 @@ export default function DetailListInfluenceur(props) {
     const closeModal = () => {
         setShowModal(false);
     }
+
+    let categories = useSelector((state) => state.categories);
+
+    React.useEffect(() => {
+        if (data) {
+            categories && categories.value && categories.value.map(val => {
+                if (val.id === data.categorieId) {
+                    return setInf(val);
+                }
+            })
+        }
+    }, [data, categories]);
 
     return (
         <TableContainer component={Paper} style={{ borderTop: "1px solid #ddd" }}>
@@ -83,7 +96,7 @@ export default function DetailListInfluenceur(props) {
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell width={200} style={{ fontWeight: "bold" }}>Catégorie </TableCell>
-                        <TableCell width={200}>{data.categorie && data.categorie.nom}</TableCell>
+                        <TableCell width={200}>{inf ? inf.nom : data.categorie && data.categorie.nom}</TableCell>
                     </TableRow>
 
                     <TableRow

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import "./Leftbar.css";
-import { FaImage, FaRegLaughBeam, FaTable, FaTachometerAlt, FaUsers, FaVideo } from "react-icons/fa"
+import { FaHandHolding, FaHandshake, FaImage, FaRegLaughBeam, FaTable, FaTachometerAlt, FaUsers, FaVideo } from "react-icons/fa"
 
 const Leftbar = () => {
     return (
@@ -23,6 +23,12 @@ const Leftbar = () => {
                     <div className='item'>
                         <FaRegLaughBeam />
                         <span>Influenceurs</span>
+                    </div>
+                </NavLink>
+                <NavLink to="/demandes">
+                    <div className='item'>
+                        <FaHandshake />
+                        <span>Demandes</span>
                     </div>
                 </NavLink>
                 <NavLink to="/images">
