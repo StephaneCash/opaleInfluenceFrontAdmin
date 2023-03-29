@@ -160,3 +160,10 @@ tr:hover {
     cursor: pointer;
     border-radius: 4px;
 }
+
+.categories input,
+.categories textarea,
+.categories select {
+    border-radius: 4px !important;
+    border: 1px solid silver;
+}
