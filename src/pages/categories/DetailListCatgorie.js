@@ -8,15 +8,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Avatar } from '@mui/material';
 import { baseUrlImage } from '../../bases/basesUrl';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DetailImage from './DetailImage';
 
 export default function DetailListCatgorie(props) {
 
     let data = props.data;
-
-    let dispatch = useDispatch();
     const [showModal, setShowModal] = React.useState(false);
 
     const showImage = () => {
