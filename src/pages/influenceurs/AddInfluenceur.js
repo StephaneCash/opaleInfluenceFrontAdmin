@@ -156,33 +156,35 @@ const AddInfluenceur = () => {
                                             />
                                         </div>
                                     </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6'>
-                                            <div className="form-group mb-3">
-                                                <label htmlFor="pseudo">Pseudo</label>
-                                                <input
-                                                    type="textx"
-                                                    placeholder='Pseudo'
-                                                    className="form-control"
-                                                    id="pseudo"
-                                                    value={pseudo}
-                                                    onChange={(e) => setPseudo(e.target.value)}
-                                                />
-                                            </div>
+                                </div>
+                                <div className='row'>
+                                    <div className='col-sm-6'>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="pseudo">Pseudo</label>
+                                            <input
+                                                type="text"
+                                                placeholder='Pseudo'
+                                                className="form-control"
+                                                id="pseudo"
+                                                value={pseudo}
+                                                onChange={(e) => setPseudo(e.target.value)}
+                                            />
                                         </div>
-                                        <div className='col-sm-6'>
-                                            <div className="form-group mb-3">
-                                                <label htmlFor="photod">Choisir une photo</label>
-                                                <input
-                                                    type="file"
-                                                    className="form-control"
-                                                    id="photo"
-                                                    onChange={handleImage}
-                                                />
-                                            </div>
+                                    </div>
+                                    <div className='col-sm-6'>
+                                        <div className="form-group mb-3">
+                                            <label htmlFor="photod">Choisir une photo</label>
+                                            <input
+                                                type="file"
+                                                className="form-control"
+                                                id="photo"
+                                                onChange={handleImage}
+                                                style={{ width: "100%" }}
+                                            />
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div className="form-group mb-3">
                                     <label htmlFor="desc">Description</label>
