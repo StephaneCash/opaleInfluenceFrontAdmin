@@ -60,7 +60,8 @@ const DetailCategorie = () => {
                                                 <p>{val.nom} {val.prenom} {val.pseudo}</p>
                                                 <p>
                                                     <Link
-                                                        to="/influenceurs/detail"
+                                                        to={{ pathname: "/influenceurs/detail" }}
+                                                        state={{ data: val }}
                                                         className='btn btn-outline'
                                                         style={{ color: "#555", border: "1px solid #ddd" }}
                                                     >

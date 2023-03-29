@@ -8,6 +8,7 @@ import AddCategorie from '../pages/categories/AddCategorie';
 import Influenceurs from '../pages/influenceurs/Influenceurs';
 import DetailCategorie from '../pages/categories/DetailCategorie';
 import AddInfluenceur from '../pages/influenceurs/AddInfluenceur';
+import DetailInfluenceur from '../pages/influenceurs/DetailInfluenceur';
 
 const RoutesFree = () => {
     return (
@@ -22,6 +23,7 @@ const RoutesFree = () => {
                     <Route path='/influenceurs' element={<Influenceurs />} />
                     <Route path='/categories/detail' element={<DetailCategorie />} />
                     <Route path='/influenceurs/add' element={<AddInfluenceur />} />
+                    <Route path='/influenceurs/detail' element={<DetailInfluenceur />} />
                 </Route>
             </Routes>
         </BrowserRouter>
