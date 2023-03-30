@@ -16,6 +16,9 @@ import Chart from "react-apexcharts";
 const Dashboard = () => {
   const { userConnected } = useContext(ContextApp);
   const categories = useSelector((state) => state.categories);
+  const usersLength = useSelector((state) => state.users);
+  const contacts = useSelector((state) => state.contacts);
+
   const influenceurLength = useSelector((state) => state.influenceurs);
 
   const options = {
@@ -28,13 +31,16 @@ const Dashboard = () => {
       name: "Transactions",
       data: [5, 7, 8, 4]
     },
+  ];
+
+  const series1 = [
     {
-      name: "Prêts",
-      data: [23, 12, 94, 81, 32, 56, 81, 19]
+      name: "Transactions",
+      data: [5, 7, 8, 4]
     },
     {
-      name: "Cartes virtuelles",
-      data: [2, 12, 54, 61, 32, 6, 81, 109]
+      name: "Transactions",
+      data: [3, 2, 6, 4]
     },
   ];
 
@@ -50,7 +56,7 @@ const Dashboard = () => {
           <div className='col-sm-9'>
             <div className='row'>
               <div className='col-sm-6'>
-                <div className='card alert alert-primary'>
+                <div className='alert alert-primary cardAlert'>
                   <div className='categorie'>
                     <div className='nomNombre'>
                       <span className='nom'>Catégorie</span>
@@ -63,7 +69,7 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className='col-sm-6'>
-                <div className='card alert alert-primary'>
+                <div className='alert alert-primary cardAlert'>
                   <div className='categorie'>
                     <div className='nomNombre'>
                       <span className='nom'>Influenceurs</span>
@@ -79,11 +85,11 @@ const Dashboard = () => {
 
             <div className='row'>
               <div className='col-sm-6'>
-                <div className='card alert alert-primary'>
+                <div className='alert alert-primary cardAlert'>
                   <div className='categorie'>
                     <div className='nomNombre'>
                       <span className='nom'>Contacts</span>
-                      <span className='nombre'>Effectif : {categories && categories.value && categories.value.length}</span>
+                      <span className='nombre'>Effectif : {contacts && contacts.value && contacts.value.length}</span>
                     </div>
                     <div className='image'>
                       <Avatar alt="Catégorie" sx={{ width: 40, height: 40 }} src={contact} />
@@ -92,11 +98,11 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className='col-sm-6'>
-                <div className='card alert alert-primary'>
+                <div className=' alert alert-primary cardAlert'>
                   <div className='categorie'>
                     <div className='nomNombre'>
                       <span className='nom'>Utilisateurs</span>
-                      <span className='nombre'>Effectif : {categories && categories.value && categories.value.length}</span>
+                      <span className='nombre'>Effectif : {usersLength && usersLength.value && usersLength.value.length}</span>
                     </div>
                     <div className='image'>
                       <Avatar alt="Catégorie" sx={{ width: 40, height: 40 }} src={users} />
@@ -107,8 +113,17 @@ const Dashboard = () => {
             </div>
 
             <div className='charts'>
-              <div className='card'>
-                <Chart options={options} series={series} type="bar" width={"100%"} height={400} />
+              <div style={{display:"flex", justifyContent:"space-between"}}>
+                <div className='col-sm-6'>
+                  <div className='card' style={{ background: "#efefef", border: "1px solid #efefef" }}>
+                    <Chart options={options} series={series1} type="bar" width={"100%"} height={400} />
+                  </div>
+                </div>
+                <div className='col-sm-6'>
+                  <div className='card' style={{ background: "#efefef", border: "1px solid #efefef" }}>
+                    <Chart options={options} series={series} type="area" width={"100%"} height={400} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

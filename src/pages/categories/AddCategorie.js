@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaHandPointLeft, FaTable } from 'react-icons/fa';
+import { FaArrowLeft, FaCloudUploadAlt } from 'react-icons/fa';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import "./Categorie.css";
@@ -76,11 +76,11 @@ const AddCategorie = () => {
                             }}>
                                 <Link to="/categories"
                                     style={{
-                                        fontSize: "16px", color: "#1976d2", textDecoration: "underline",
-                                        display: "flex", alignItems: "center", gap: "5px", fontWeight: 'bold'
+                                        fontSize: "16px", color: "#1976d2",
+                                        display: "flex", alignItems: "center", gap: "5px",
                                     }}
                                 >
-                                    <FaTable /> Catégories
+                                    <FaArrowLeft /> Catégories
                                 </Link>
                                 <span style={{ fontSize: "15px", color: "#1976d2", }}>/</span>
                                 <span style={{ fontSize: "17px" }}>
@@ -134,15 +134,21 @@ const AddCategorie = () => {
                             </div>
                             <div className={file ? "col-sm-6 imageCard" : image ? "col-sm-6 imageCard" : "col-sm-6"}>
                                 <h5>Image</h5>
-                                <div className='card'>
+                                <div className='card' style={{ border: image ? "1px solid #ddd" : "0px solid #ddd" }}>
                                     {
-                                        file ? <img src={file} alt="" className='img-thumbnail' /> :
+                                        file ?
+                                            <img src={file} alt="" className='img-thumbnail' /> :
                                             image ?
-                                                <img src={image ? baseUrlImage + "/" + image : ""}
-                                                    className='img-thumbnail' alt="catégorie" />
-                                                : <div className='noneImage'>
-                                                    <FaHandPointLeft size={20} />
-                                                    Veuillez choisir une image
+                                                <img
+                                                    src={image ? baseUrlImage + "/" + image : ""}
+                                                    className='img-thumbnail'
+                                                    alt="catégorie"
+                                                />
+                                                : <div
+                                                    className='noneImage'
+                                                >
+                                                    <FaCloudUploadAlt size={100} />
+                                                    <label htmlFor='exampleFormControlFile1'>Veuillez choisir une image</label>
                                                 </div>
                                     }
                                 </div>

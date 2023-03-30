@@ -47,7 +47,7 @@ function Navbar() {
 
     return (
         <AppBar position="fixed"
-            style={{ backgroundColor: '#1976d2',}}
+            style={{ backgroundColor: '#1976d2', }}
         >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
@@ -139,7 +139,7 @@ function Navbar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0, display: "flex", flexDirection: "row", gap: 4 }}>
+                    <Box sx={{ flexGrow: 0, display: "flex", flexDirection: "row", gap: 2, alignItems: "center" }}>
                         <div>
                             {
                                 userConnected !== null && "Salut " + userConnected.pseudo

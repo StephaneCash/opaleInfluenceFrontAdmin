@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaHandPointLeft, FaRegLaughBeam } from 'react-icons/fa';
+import { FaArrowLeft, FaCloudUploadAlt } from 'react-icons/fa';
 import Leftbar from '../../components/leftbar/Leftbar';
 import Navbar from '../../components/navbar/Navbar';
 import "./Influenceurs.css";
@@ -97,11 +97,11 @@ const AddInfluenceur = () => {
                             }}>
                                 <Link to="/influenceurs"
                                     style={{
-                                        fontSize: "16px", color: "#1976d2", textDecoration: "underline",
-                                        display: "flex", alignItems: "center", gap: "5px", fontWeight: 'bold'
+                                        fontSize: "16px", color: "#1976d2",
+                                        display: "flex", alignItems: "center", gap: "5px",
                                     }}
                                 >
-                                    <FaRegLaughBeam /> Influenceurs
+                                    <FaArrowLeft /> Influenceurs
                                 </Link>
                                 <span style={{ fontSize: "15px", color: "#1976d2", }}>/</span>
                                 <span style={{ fontSize: "17px" }}>
@@ -231,14 +231,14 @@ const AddInfluenceur = () => {
                                         rows="3"></textarea>
                                 </div>
                                 <h5>Image</h5>
-                                <div className='card'>
+                                <div className='card' style={{ border: image ? "1px solid #ddd" : "0px solid #ddd" }}>
                                     {
                                         file ? <img src={file} alt="" className='img-thumbnail' /> :
                                             image ?
                                                 <img src={image ? baseUrlImage + "/" + image : ""}
                                                     className='img-thumbnail' alt="catégorie" />
                                                 : <div className='noneImage'>
-                                                    <FaHandPointLeft size={20} />
+                                                    <FaCloudUploadAlt size={100} />
                                                     <label htmlFor="photo"> Veuillez choisir une image</label>
                                                 </div>
                                     }
