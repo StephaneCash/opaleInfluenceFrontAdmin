@@ -10,8 +10,35 @@ import users from "../../assets/users.svg"
 import dash from "../../assets/dash.svg"
 import contact from "../../assets/contact.svg"
 import { useSelector } from 'react-redux';
-import { Avatar } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import Chart from "react-apexcharts";
+import { CircularProgressbar } from 'react-circular-progressbar';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+import { FaArrowRight } from 'react-icons/fa';
+
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
+
+function valuetext(value) {
+  return `${value}°C`;
+}
 
 const Dashboard = () => {
   const { userConnected } = useContext(ContextApp);
@@ -45,6 +72,9 @@ const Dashboard = () => {
   ];
 
   console.log(userConnected)
+
+  const value = 0.66;
+
   return (
     <>
       <Navbar />
@@ -113,7 +143,7 @@ const Dashboard = () => {
             </div>
 
             <div className='charts'>
-              <div style={{display:"flex", justifyContent:"space-between"}}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div className='col-sm-6'>
                   <div className='card' style={{ background: "#efefef", border: "1px solid #efefef" }}>
                     <Chart options={options} series={series1} type="bar" width={"100%"} height={400} />
@@ -133,11 +163,54 @@ const Dashboard = () => {
               <div className='leftside mb-3'>
                 <div className='overPlay'></div>
                 <img src={marketing} alt="Marketing" />
+                <div className='content'>
+                  <div className='card'>
+                    <div className='card-header'>
+                      <span>Articles (56)</span>
+                    </div>
+                    <div className='card-body' style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}>
+                      <Button variant="contained" color='primary' style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px"
+                      }}>
+                        Découvrir <FaArrowRight />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className='leftside'>
                 <div className='overPlay'></div>
                 <img src={dash} alt="Marketing" />
+                <div className='content'>
+                  <div className='card'>
+                    <div className='card-header'>
+                      <span>Médias (520)</span>
+                    </div>
+
+                    <div className='card-body' style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}>
+                      <Button variant="contained" color='primary' style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "10px"
+                      }}>
+                        Découvrir <FaArrowRight />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

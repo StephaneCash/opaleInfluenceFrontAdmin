@@ -9,6 +9,8 @@ import Influenceurs from '../pages/influenceurs/Influenceurs';
 import DetailCategorie from '../pages/categories/DetailCategorie';
 import AddInfluenceur from '../pages/influenceurs/AddInfluenceur';
 import DetailInfluenceur from '../pages/influenceurs/DetailInfluenceur';
+import Demandes from '../pages/demandes/Demandes';
+import Users from '../pages/users/Users';
 
 const RoutesFree = () => {
     return (
@@ -19,6 +21,8 @@ const RoutesFree = () => {
                 <Route element={<RoutesPrivate />}>
                     <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/categories' element={<Categorie />} />
+                    <Route path='/demandes' element={<Demandes />} />
+                    <Route path='/users' element={<Users />} />
                     <Route path='/categories/add' element={<AddCategorie />} />
                     <Route path='/influenceurs' element={<Influenceurs />} />
                     <Route path='/categories/detail' element={<DetailCategorie />} />

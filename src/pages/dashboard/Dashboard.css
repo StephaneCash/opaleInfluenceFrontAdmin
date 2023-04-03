@@ -85,3 +85,33 @@
 .dashboard .categorie img {
     width: 100%;
 }
+
+.dashboard .leftside .content {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 1;
+}
+
+.dashboard .leftside .content .card {
+    border: 1px solid #fff !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100% !important;
+    width: 100% !important;
+    color: #fff !important;
+    width: 100% !important;
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+    stroke: #1976d2 !important;
+    width: 10px !important;
+}
+
+.CircularProgressbar-text{
+    fill: #111 !important;
+}

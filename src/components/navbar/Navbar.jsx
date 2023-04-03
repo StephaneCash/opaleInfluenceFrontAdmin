@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ContextApp } from '../../context/AppContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { baseUrlImage } from '../../bases/basesUrl';
 
 const pages = ['', '', ''];
 const settings = ['Compte', 'Déconnexion'];
@@ -44,7 +45,7 @@ function Navbar() {
         localStorage.removeItem('tokenUser');
         navigate('/');
     }
-
+    console.log(userConnected)
     return (
         <AppBar position="fixed"
             style={{ backgroundColor: '#1976d2', }}
@@ -147,7 +148,9 @@ function Navbar() {
                         </div>
                         <Tooltip title="Ouvrir les paramètres">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt={userConnected && userConnected.pseudo} src="/static/images/avatar/2.jpg" />
+                                <Avatar alt={userConnected && userConnected.pseudo}
+                                    src={userConnected !== null &&
+                                        baseUrlImage + "/" + userConnected.url} />
                             </IconButton>
                         </Tooltip>
                         <Menu

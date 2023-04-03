@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 import { FaFilter, FaInfo, FaRegEdit, FaRegTrashAlt, FaUsers } from 'react-icons/fa';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-export default function ListCategorie(props) {
+export default function ListDemandes(props) {
   let data = props.data;
   let valueSearch = props.valueSearch && props.valueSearch.toLowerCase();
 
@@ -164,7 +164,7 @@ export default function ListCategorie(props) {
                   <TableCell width={200}>{row.nom}</TableCell>
                   <TableCell align="left" width={500} style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400", lineHeight: "1.4rem" }}>
                     {
-                      row && row.description && row.description.split(".") ? row.description.split(".")[0] + "..." : row.description
+                      row.description.split(".") ? row.description.split(".")[0] + "..." : row.description
                     }
                   </TableCell>
                   <TableCell align="left" width={120}>

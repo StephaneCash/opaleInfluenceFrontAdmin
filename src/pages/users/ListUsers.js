@@ -10,41 +10,40 @@ import { Avatar } from '@mui/material';
 import { baseUrlImage } from '../../bases/basesUrl';
 import LoaderBlue from '../../components/loader/LoaderBlue';
 import { useDispatch } from 'react-redux';
+import { deleteCategory, getAllcategories } from '../../features/Categories';
 import swal from 'sweetalert';
 import { Link } from 'react-router-dom';
-import { FaInfo, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { FaFilter, FaInfo, FaRegEdit, FaRegTrashAlt, FaUsers } from 'react-icons/fa';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { deleteInfluenceur, getAllInfluenceurs } from "../../features/Influenceurs"
-import { dateParserFunction } from '../../utils';
 
-export default function ListInfluenceurs(props) {
+export default function ListUsers(props) {
     let data = props.data;
     let valueSearch = props.valueSearch && props.valueSearch.toLowerCase();
 
     const [showBtnAddInf, setShowBtnAddInf] = React.useState(true);
 
-    const [influenceurs, setinfluenceurs] = React.useState([]);
+    const [categories, setCategories] = React.useState([]);
     const [hasMore, setHasMore] = React.useState(true);
     const [count, setCount] = React.useState(10);
 
     let dispatch = useDispatch();
 
     React.useEffect(() => {
-        setinfluenceurs(data && data.value && data.value)
+        setCategories(data && data.value && data.value)
     }, [data]);
 
     React.useEffect(() => {
-        dispatch(getAllInfluenceurs(count));
+        dispatch(getAllcategories(count));
     }, [dispatch, count]);
 
     const deleteCategorie = (id) => {
         swal({
-            text: "Etes-vous sûr de vouloir supprimer cet influenceur ?",
+            text: "Etes-vous sûr de vouloir supprimer cet utilsateur ?",
             buttons: true,
             dangerMode: true
         }).then((willDelete) => {
             if (willDelete) {
-                dispatch(deleteInfluenceur(id));
+                dispatch(deleteCategory(id));
             }
         }).catch((error) => {
             console.log(error);
@@ -52,20 +51,25 @@ export default function ListInfluenceurs(props) {
     };
 
     const loadMore = () => {
-        if (influenceurs.length === count) {
-            setinfluenceurs(influenceurs && influenceurs.concat(influenceurs))
-            setHasMore(true)
+        if (categories.length === count) {
+            setCategories(categories && categories.concat(categories));
+            setHasMore(true);
             setCount(count + 10);
         }
         else {
-            setHasMore(false)
+            setHasMore(false);
             setCount(count + 10);
         }
     };
 
     const handleCheckBox = (id) => {
         setShowBtnAddInf(!showBtnAddInf);
+        console.log(id)
     };
+
+    React.useEffect(() => {
+        setShowBtnAddInf(false);
+    }, []);
 
     return (
         <TableContainer component={Paper} id="scrollableDiv"
@@ -73,14 +77,30 @@ export default function ListInfluenceurs(props) {
                 height: 510,
                 overflow: 'auto',
             }}>
-            <div style={{ background: '#fff', border: "1px solid #ddd", padding: "1rem" }}>
-                <span>Pages</span> / <span>Influenceurs {data && data.value && data.value.length > 0 ? `(${data.value.length})` :
-                    `(0)`}</span>
-                <br />
-                <h6>Influenceurs</h6>
+            <div className='alert alert-primary' style={{ background: '#fff', border: "1px solid #ddd" }}>
+                <div className='headerListCategorie'>
+                    <div>
+                        <span>Pages</span> / <span>Utilisateurs {data && data.value && data.value.length > 0 ? `(${data.value.length})` : `(0)`}</span>
+                        <br />
+                        <h6>Utilisateurs</h6>
+                    </div>
+                    <div>
+                        {
+                            showBtnAddInf ? <button
+                                className='btn btn-success'
+                                style={{
+                                    backgroundColor: '#ddd', color: "#333",
+                                    border: "1px solid #fff", boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+                                }}>
+                                <FaUsers /> Ajouter des influenceurs
+                            </button>
+                                : <FaFilter />
+                        }
+                    </div>
+                </div>
             </div>
             <InfiniteScroll
-                dataLength={influenceurs && influenceurs.length}
+                dataLength={categories && categories.length}
                 next={loadMore}
                 hasMore={hasMore}
                 loader={
@@ -115,16 +135,17 @@ export default function ListInfluenceurs(props) {
                                 />
                             </TableCell>
                             <TableCell>ID</TableCell>
-                            <TableCell>Nom</TableCell>
-                            <TableCell align="left">Description</TableCell>
-                            <TableCell align="left">Date inscription</TableCell>
+                            <TableCell>Pseudo</TableCell>
+                            <TableCell align="left">Email</TableCell>
+                            <TableCell align="left">Role</TableCell>
+                            <TableCell align="left">Statut</TableCell>
                             <TableCell align="left">Options</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
 
-                        {influenceurs && influenceurs.length > 0 ? influenceurs.filter(val => {
-                            const nom = val && val.nom !== undefined && val.nom.toLowerCase();
+                        {categories && categories.length > 0 ? categories.filter(val => {
+                            const nom = val && val.email !== undefined && val.email.toLowerCase();
                             return nom && nom.includes(valueSearch)
                         })
                             .map((row, i) => (
@@ -141,25 +162,27 @@ export default function ListInfluenceurs(props) {
                                         />
                                     </TableCell>
                                     <TableCell width={60}>{i + 1}</TableCell>
-                                    <TableCell width={300}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                            <div>
-                                                <Avatar alt="Remy Sharp" sx={{ width: 40, height: 40 }} src={baseUrlImage + "/" + row.url} />
-                                            </div>
-                                            <div>
-                                                <div style={{ fontWeight: "600", }}>{row.nom + ' ' + row.pseudo}</div>
-                                                <div className='mt-1' style={{ color: "#666", fontSize: '13px' }}>{row && row.categorie && row.categorie.nom}</div>
-                                            </div>
-                                        </div>
+                                    <TableCell width={200} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                        <Avatar alt={row && row.pseudo && row.pseudo} sx={{ width: 50, height: 50 }} src={baseUrlImage + "/" + row.url} />
+                                        {row.pseudo}
                                     </TableCell>
-                                    <TableCell align="left" width={500} style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400", lineHeight: "1.4rem" }}>
+                                    <TableCell align="left" width={400}
+                                        style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400", lineHeight: "1.4rem" }}>
                                         {
-                                            row && row.detail && row.detail.split(".") ? row.detail.split(".")[0] + "..." : row.detail
+                                            row && row.email
                                         }
                                     </TableCell>
-                                    <TableCell width={300}>
+                                    <TableCell align="left" width={200}
+                                        style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400", lineHeight: "1.4rem" }}>
                                         {
-                                            dateParserFunction(row.createdAt)
+                                            row && row.role === 0 ? "Admin" : "Super Admin"
+                                        }
+                                    </TableCell>
+
+                                    <TableCell align="left" width={200}
+                                        style={{ fontFamily: "Roboto", textAlign: "justify", fontWeight: "400", lineHeight: "1.4rem" }}>
+                                        {
+                                            row && row.isActive === false ? <span className='alert alert-danger'>Désactivé</span> : <span className='alert alert-success'>Activé</span>
                                         }
                                     </TableCell>
                                     <TableCell align="left" width={130}>
