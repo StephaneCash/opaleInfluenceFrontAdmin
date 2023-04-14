@@ -24,8 +24,8 @@ export const newInfluenceur = createAsyncThunk("influenceurs/create",
         } catch (error) {
             console.log(error.response);
             if (error.response && error.response.status === 400) {
-                toast.error(error && error.response && error.response.data && error.response.data.message);
-                console.log("kk", error.response.data && error.response.data.message)
+                toast.error(error && error.response && error.response.data && error.response.data.message[0]);
+                console.log("kk", error.response.data && error.response.data.message[0])
             }
         }
     });

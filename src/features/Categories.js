@@ -28,6 +28,11 @@ export const newCategorie = createAsyncThunk("categories/create",
             return resp.data;
         } catch (error) {
             console.log(error.response);
+            if (error.response && error.response.status === 400) {
+                const msgErr = error && error.response && error.response.data && error.response.data.message
+                toast.error(msgErr[0])
+                console.log(msgErr, " MSG")
+            }
             rejectWithValue(error.response)
         }
     });

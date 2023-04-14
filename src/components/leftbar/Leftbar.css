@@ -1,7 +1,7 @@
 .leftbar {
     background-color: #efefef !important;
     height: auto;
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     position: fixed;
 }
 

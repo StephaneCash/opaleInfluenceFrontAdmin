@@ -12,9 +12,6 @@ import contact from "../../assets/contact.svg"
 import { useSelector } from 'react-redux';
 import { Avatar, Button } from '@mui/material';
 import Chart from "react-apexcharts";
-import { CircularProgressbar } from 'react-circular-progressbar';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
 import { FaArrowRight } from 'react-icons/fa';
 
 const marks = [

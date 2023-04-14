@@ -66,6 +66,9 @@ export default function Login() {
                         console.log(error);
                         toast.error(error && error.response && error.response.data && error.response.data.message);
                         setClicBtn(false);
+                        if (error.code === "ERR_NETWORK") {
+                            toast.error("Impossible d'établir une connexion au serveur");
+                        }
                     }
 
                 } else {

@@ -8,7 +8,7 @@ const DetailImage = (props) => {
     let data = props.data;
 
     return (
-        <Modal show={show} className='modalImage' style={{ marginTop: "50px" }}>
+        <Modal show={show} className='modalImage' style={{ marginTop: "50px", fontFamily:"Poppins" }}>
             <Modal.Header style={{ backgroundColor: '#ddd', color: '#111' }}>
                 Image {data && data.nom && data.nom}
             </Modal.Header>
